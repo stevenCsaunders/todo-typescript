@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { FC, useState } from 'react'
+import { AddToDo } from './components/AddToDo'
+import { ToDoList } from './components/ToDoList'
+import { Button } from './components/Button'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App: FC = () => {
+	const [showModal, setShowModal] = useState(false)
+
+	const toggleModal = () => {
+		setShowModal(!showModal)
+	}
+
+	const handleNewTask = () => {
+		console.log('CLicked')
+	}
+
+	return (
+		<div className='App'>
+			<header className='App-header'>
+				<h1>GET SH!T DONE</h1>
+			</header>
+			<Button name='Add ToDo' onClick={toggleModal} />
+			<main>
+				{showModal && <AddToDo onClick={handleNewTask} toggleModal={toggleModal}/>}
+				<ToDoList />
+			</main>
+		</div>
+	)
 }
 
-export default App;
+export default App
