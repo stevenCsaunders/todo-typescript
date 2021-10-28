@@ -28,7 +28,7 @@ export const AddTask = ({
 						value={task}
 					/>
 				</div>
-				<Button name='Add ToDo' onClick={addTask} />
+				<Button className='button-dark' name='Add ToDo' onClick={addTask} />
 			</div>
 		</div>
 	)

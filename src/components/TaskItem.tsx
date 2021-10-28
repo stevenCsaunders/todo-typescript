@@ -3,9 +3,10 @@ import { useState } from 'react'
 
 type Props = {
 	task: TTask,
+	deleteTask(taskNameToDelete: string): void
 }
 
-export const TaskItem = ({ task }: Props) => {
+export const TaskItem = ({ task, deleteTask }: Props) => {
 
 	const [isDone, setIsDone] = useState(false)
 
@@ -28,6 +29,14 @@ export const TaskItem = ({ task }: Props) => {
 				>
 					{task.taskName}
 				</label>
+				{isDone && (
+					<button
+						className='delete-button'
+						onClick={() => deleteTask(task.taskName)}
+					>
+						X
+					</button>
+				)}
 			</div>
 		</div>
 	)

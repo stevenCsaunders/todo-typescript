@@ -20,10 +20,16 @@ const App: FC = () => {
 
 	const addTask = () => {
 		const newTask = {
-			taskName: task
+			taskName: task,
 		}
 		setTaskList([...taskList, newTask])
 		setTask('')
+	}
+
+	const deleteTask = (taskToDelete: string) => {
+		setTaskList(taskList.filter((task) => {
+			return task.taskName !== taskToDelete
+		}))
 	}
 
 	return (
@@ -31,8 +37,18 @@ const App: FC = () => {
 			<header className='App-header'>
 				<h1>GET SH!T DONE</h1>
 			</header>
-			<Button name='Add ToDo' onClick={toggleModal} />
-			<Button name='Clear ' onClick={toggleModal} />
+			<div className='button-wrapper'>
+				<Button
+					className='button-light'
+					name='Add ToDo'
+					onClick={toggleModal}
+				/>
+				<Button
+					className='button-light'
+					name='Clear'
+					onClick={toggleModal}
+				/>
+			</div>
 			<main>
 				{showModal && (
 					<AddTask
@@ -44,7 +60,7 @@ const App: FC = () => {
 				)}
 				<section className='todo-list'>
 					{taskList.map((task: TTask, key: number) => {
-						return <TaskItem task={task} key={key} />
+						return <TaskItem task={task} key={key} deleteTask={deleteTask} />
 					})}
 				</section>
 			</main>
